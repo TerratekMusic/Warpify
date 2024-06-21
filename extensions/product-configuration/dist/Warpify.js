@@ -16550,10 +16550,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
               return jsxWithValidation(type, props, key, false);
             }
           }
-          var jsx6 = jsxWithValidationDynamic;
-          var jsxs3 = jsxWithValidationStatic;
-          exports.jsx = jsx6;
-          exports.jsxs = jsxs3;
+          var jsx5 = jsxWithValidationDynamic;
+          var jsxs2 = jsxWithValidationStatic;
+          exports.jsx = jsx5;
+          exports.jsxs = jsxs2;
         })();
       }
     }
@@ -17502,10 +17502,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     return api;
   }
 
-  // extensions/product-configuration/src/ProductIndexWarpifyExtension.tsx
+  // extensions/product-configuration/src/ProductVariantDetailsConfigurationExtension.tsx
   var import_jsx_runtime4 = __toESM(require_jsx_runtime());
-  var ProductIndexWarpifyExtension_default = reactExtension(
-    "admin.product-index.selection-action.render",
+  var ProductVariantDetailsConfigurationExtension_default = reactExtension(
+    "admin.product-details.action.render",
     () => /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(App, {})
   );
   function App() {
@@ -17516,23 +17516,6 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(AdminAction2, { children: [
       /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Text2, { children: '"welcome degen mint your nft"' }),
       /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button2, { children: "Post on Warpcast" })
-    ] });
-  }
-
-  // extensions/product-configuration/src/ProductVariantDetailsConfigurationExtension.tsx
-  var import_jsx_runtime5 = __toESM(require_jsx_runtime());
-  var ProductVariantDetailsConfigurationExtension_default = reactExtension(
-    "admin.product-details.action.render",
-    () => /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(App2, {})
-  );
-  function App2() {
-    const {
-      extension: { target },
-      i18n
-    } = useApi();
-    return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(AdminAction2, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Text2, { children: '"welcome degen mint your nft"' }),
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Button2, { children: "Post on Warpcast" })
     ] });
   }
 })();

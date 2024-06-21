@@ -5,13 +5,8 @@ name = "t:name"
 handle = "Warpify"
 type = "ui_extension"
 
-
-# Both extension points are required
-[[extensions.targeting]]
-module = "./src/ProductIndexWarpifyExtension.tsx"
-# The target used here must match the target used in the module file (./src/ProductDetailsConfigurationExtension.tsx)
-target = "admin.product-index.selection-action.render"
-
+[extensions.capabilities]
+network_access = true
 
 [[extensions.targeting]]
 module = "./src/ProductVariantDetailsConfigurationExtension.tsx"
