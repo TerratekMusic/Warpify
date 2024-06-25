@@ -17513,9 +17513,32 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       extension: { target },
       i18n
     } = useApi();
+    const postData = () => __async(this, null, function* () {
+      const apiURL = "https://reqres.in/api/users";
+      const data = {
+        name: "morpheus",
+        job: "leader"
+      };
+      try {
+        const response = yield fetch(apiURL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status}`);
+        }
+        const responseData = yield response.json();
+        console.log(responseData);
+      } catch (error) {
+        console.error("Failed to fetch:", error);
+      }
+    });
     return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(AdminAction2, { children: [
       /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Text2, { children: '"welcome degen mint your nft"' }),
-      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button2, { children: "Post on Warpcast" })
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button2, { onClick: postData, children: "Post on Warpcast" })
     ] });
   }
 })();
