@@ -6,7 +6,7 @@ import {
   Button,
   BlockStack,
 } from "@shopify/ui-extensions-react/admin";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { BlockLayout } from "@shopify/ui-extensions-react/checkout";
 // The target used here must match the target used in the extension's toml file (./shopify.extension.toml)
@@ -20,9 +20,34 @@ function App() {
   const {
     extension: { target },
     i18n,
+    data,
   } = useApi<"admin.product-variant-details.configuration.render">();
 
   const [loading, setLoading] = useState(false);
+  const [productName, setProductName] = useState(false);
+
+  useEffect(() => {
+    (async function getProductInfo() {
+      const getProductQuery = {
+        query: `query Product($id: ID!) {
+          product(id: $id) {
+            title
+          }
+        }`,
+        variables: { id: data.variant[0].id },
+      };
+      const res = await fetch("shopify:admin/api/graphql.json", {
+        method: "POST",
+        body: JSON.stringify(getProductQuery),
+      });
+      if (!res.ok) {
+        console.log("Error fetching product data");
+      }
+      const productData = await res.json();
+      console.log(productData);
+      setProductName(productData.data.product.title);
+    });
+  }, []);
 
   const postData = async () => {
     const apiURL = "https://api.neynar.com/v2/farcaster/cast";
@@ -58,7 +83,8 @@ function App() {
   return (
     <AdminAction>
       <BlockStack inlineAlignment="center">
-        <Text>"welcome degen mint your nft"</Text>
+        <Text>You are about to post this item on Warpcast Netowrk</Text>
+        <Text>{productName}</Text>
         <Button onClick={postData}>Post on Warpcast</Button>
       </BlockStack>
     </AdminAction>
