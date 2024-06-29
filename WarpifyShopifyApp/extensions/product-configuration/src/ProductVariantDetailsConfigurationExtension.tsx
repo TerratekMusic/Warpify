@@ -5,8 +5,10 @@ import {
   AdminAction,
   Button,
   BlockStack,
+  Image,
 } from "@shopify/ui-extensions-react/admin";
 import { useEffect, useState } from "react";
+import { getIssues } from "./utils";
 
 import { BlockLayout } from "@shopify/ui-extensions-react/checkout";
 // The target used here must match the target used in the extension's toml file (./shopify.extension.toml)
@@ -20,34 +22,64 @@ function App() {
   const {
     extension: { target },
     i18n,
-    data,
   } = useApi<"admin.product-variant-details.configuration.render">();
 
   const [loading, setLoading] = useState(false);
-  const [productName, setProductName] = useState(false);
+  const [productName, setProductName] = useState("");
 
-  useEffect(() => {
-    (async function getProductInfo() {
-      const getProductQuery = {
-        query: `query Product($id: ID!) {
-          product(id: $id) {
-            title
-          }
-        }`,
-        variables: { id: data.variant[0].id },
-      };
-      const res = await fetch("shopify:admin/api/graphql.json", {
-        method: "POST",
-        body: JSON.stringify(getProductQuery),
-      });
-      if (!res.ok) {
-        console.log("Error fetching product data");
-      }
-      const productData = await res.json();
-      console.log(productData);
-      setProductName(productData.data.product.title);
-    });
-  }, []);
+  //connect with the extension's APIs
+  const { data } = useApi(target);
+  const [issue, setIssues] = useState([]);
+  const [allIssues, setAllIssues] = useState([]);
+  const [formErrors, setFormErrors] = useState(null);
+  const [initialValues, setInitialValues] = useState([]);
+  const productId = data.selected[0].id;
+
+  // const productData = JSON.stringify(data.selected[0]);
+
+  console.log(productId);
+  // useEffect(() => {
+  //   (async function getProductInfo() {
+  //     // Load the product's metafield of type issues
+  //     const productData = await getIssues(productId);
+
+  //     setLoading(false);
+  //     if (productData?.data?.product?.metafield?.value) {
+  //       const parsedIssues = JSON.parse(
+  //         productData.data.product.metafield.value
+  //       );
+  //       setInitialValues(
+  //         parsedIssues.map(({ completed }) => Boolean(completed))
+  //       );
+  //       setIssues(parsedIssues);
+  //       console.log(productData);
+  //     }
+  //   })();
+  // }, [productId]);
+
+  // useEffect(() => {
+  //   (async function getProductInfo() {
+  //     const getProductQuery = {
+  //       query: `query Product($id: ID!) {
+  //         product(id: $id) {
+  //           title
+  //         }
+  //       }`,
+  //       variables: { id: data.selected[0].id },
+  //     };
+  //     const res = await fetch("shopify:admin/api/graphql.json", {
+  //       method: "POST",
+  //       body: JSON.stringify(getProductQuery),
+  //     });
+  //     if (!res.ok) {
+  //       console.log("Error fetching product data");
+  //     }
+  //     const productData = await res.json();
+  //     console.log(productData);
+  //     setProductName(productData.data.product.title);
+  //     console.log(productName);
+  //   });
+  // }, []);
 
   const postData = async () => {
     const apiURL = "https://api.neynar.com/v2/farcaster/cast";
@@ -85,6 +117,7 @@ function App() {
       <BlockStack inlineAlignment="center">
         <Text>You are about to post this item on Warpcast Netowrk</Text>
         <Text>{productName}</Text>
+        <Image alt="Pickaxe" source="./assets/baseTshirt.png" />
         <Button onClick={postData}>Post on Warpcast</Button>
       </BlockStack>
     </AdminAction>
