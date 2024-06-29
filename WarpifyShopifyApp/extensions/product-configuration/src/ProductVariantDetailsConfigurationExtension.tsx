@@ -115,9 +115,12 @@ function App() {
   return (
     <AdminAction>
       <BlockStack inlineAlignment="center">
-        <Text>You are about to post this item on Warpcast Netowrk</Text>
+        <Text>You are about to post this item for sell in Warpcast</Text>
         <Text>{productName}</Text>
-        <Image alt="Pickaxe" source="./assets/baseTshirt.png" />
+        <Image
+          alt="Pickaxe"
+          source="https://m.media-amazon.com/images/I/A13usaonutL._CLa%7C2140%2C2000%7C71gTgdiSrwL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX385_.png"
+        />
         <Button onClick={postData}>Post on Warpcast</Button>
       </BlockStack>
     </AdminAction>
