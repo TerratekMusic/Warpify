@@ -218,11 +218,11 @@ app.frame("/finish", async (c) => {
       image: (
         <img src="https://chocolate-liquid-ferret-925.mypinata.cloud/ipfs/QmZzL24Hg3VUo7uEKekxFDrrCEynqXbtivkwMKiPWZ5S5c" />
       ),
-      intents: [
-        <Button.Redirect location="">
-          Support Warpify Team in the Onchain summer buildathon
-        </Button.Redirect>,
-      ],
+      // intents: [
+      //   <Button.Redirect location="">
+      //     Support Warpify Team in the Onchain summer buildathon
+      //   </Button.Redirect>,
+      // ],
     });
   } catch (error) {
     console.log(error);
