@@ -216,7 +216,7 @@ app.frame("/finish", async (c) => {
     );
     return c.res({
       image: (
-        <img src="https://chocolate-liquid-ferret-925.mypinata.cloud/ipfs/QmZzL24Hg3VUo7uEKekxFDrrCEynqXbtivkwMKiPWZ5S5c" />
+        <img src="https://chocolate-liquid-ferret-925.mypinata.cloud/ipfs/QmWturyaFgSLSobXDbqtR4HFV9pJqXSSH35AsuUQGxF9UK" />
       ),
       // intents: [
       //   <Button.Redirect location="">
